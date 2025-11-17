@@ -5,7 +5,7 @@ author: "Cristina Aybar, Julia Lynde, Sarah Weitz"
 date: "2025-11-17"
 date-format: "MMM DD, YYYY"
 footer: "[ECON2250 Statistics for Economics](https://maghfiraer.github.io/Stats-F25) – Fall 2025 – Maghfira Ramadhani"
-format:
+format: test
   pdf:
     output-file: lab-05.pdf
 execute:
@@ -68,6 +68,7 @@ simdata <- tibble(x, y)
 ```{r, echo=TRUE}
 ggplot(simdata, aes(x=x, y=y)) +
   geom_point(color="grey40") +
+  geom_smooth(method="lm") +
   labs(title="Simulated Data: Y = 5 + 2X + ε",
        x="X", y="Y")
 ```
@@ -77,7 +78,10 @@ ggplot(simdata, aes(x=x, y=y)) +
 ### Task 1
 
 ::: callout-caution
-1.  What sign do you expect for the correlation between `x` and `y`?\
+1.  What sign do you expect for the correlation between `x` and `y`?
+
+    A positive sign, since this correlation shows a positive and strong correlation.\
+
 2.  Add a fitted line using `geom_smooth(method="lm")` and confirm visually.
 :::
 
@@ -115,7 +119,11 @@ summary(model_sim)
 ### Task 2
 
 -   Interpret the slope: what does a one-unit increase in $X$ imply for $Y$?\
+    **A one-unit increase in X implies a 1-point increase in Y.**
+
 -   How close are your manual and R estimates? Why are they identical (up to rounding)?
+
+    **My manual and R estimates are identical because** **we are computing exactly the same quantities that R is computing. Linear regression has closed-form solutions, meaning the results are very close. We are using the same quantities and same formulas.**
 
 ------------------------------------------------------------------------
 
@@ -187,7 +195,7 @@ predict(model_cps, newdata = data.frame(educ = c(12, 14, 16)))
 
 ------------------------------------------------------------------------
 
-### Task 5
+### Task 5 - HI CAN YOU SEE THIS
 
 -   What happens to predicted earnings when education increases by 2 years?\
     **Predicted earnings increase by \$203.10 when education increases by 2 years between 12 and 14 years.**
