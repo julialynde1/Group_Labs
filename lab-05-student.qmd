@@ -172,7 +172,7 @@ ggplot(cps, aes(x=educ, y=earnwk)) +
 
 ------------------------------------------------------------------------
 
-### Task 4 - HI Can you see this
+### Task 4
 
 -   Add residual lines with `geom_segment()`.\
 
@@ -195,7 +195,7 @@ predict(model_cps, newdata = data.frame(educ = c(12, 14, 16)))
 
 ------------------------------------------------------------------------
 
-### Task 5
+### Task 5 - HI CAN YOU SEE THIS
 
 -   What happens to predicted earnings when education increases by 2 years?\
 -   Can we interpret this as a **causal effect** of education on income? Why or why not?\
