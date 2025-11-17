@@ -69,6 +69,7 @@ simdata <- tibble(x, y)
 ```{r, echo=TRUE}
 ggplot(simdata, aes(x=x, y=y)) +
   geom_point(color="grey40") +
+  geom_smooth(method="lm") +
   labs(title="Simulated Data: Y = 5 + 2X + ε",
        x="X", y="Y")
 ```
@@ -78,7 +79,10 @@ ggplot(simdata, aes(x=x, y=y)) +
 ### Task 1
 
 ::: callout-caution
-1.  What sign do you expect for the correlation between `x` and `y`?\
+1.  What sign do you expect for the correlation between `x` and `y`?
+
+    A positive sign, since this correlation shows a positive and strong correlation.\
+
 2.  Add a fitted line using `geom_smooth(method="lm")` and confirm visually.
 :::
 
@@ -116,6 +120,7 @@ summary(model_sim)
 ### Task 2
 
 -   Interpret the slope: what does a one-unit increase in $X$ imply for $Y$?\
+    A one-unit increase in X implies a 1-point increase in Y.
 -   How close are your manual and R estimates? Why are they identical (up to rounding)?
 
 ------------------------------------------------------------------------
