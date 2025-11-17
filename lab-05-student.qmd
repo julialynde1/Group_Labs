@@ -147,9 +147,11 @@ summary(model_cps)
 ## Exercise 4: Visualizing the Fit {.smaller}
 
 ```{r, echo=TRUE}
+model
 ggplot(cps, aes(x=educ, y=earnwk)) +
   geom_point(color="grey70") +
   geom_smooth(method="lm", se=FALSE, color="blue") +
+
   labs(title="Earnings vs Education",
        subtitle="OLS regression line",
        x="Years of Education", y="Weekly Earnings (USD)")
