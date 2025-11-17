@@ -1,0 +1,203 @@
+---
+title: "Lab 5: Simple Linear Regression"
+subtitle: "Week 14"
+author: "Group Name"
+date: "2025-11-17"
+date-format: "MMM DD, YYYY"
+footer: "[ECON2250 Statistics for Economics](https://maghfiraer.github.io/Stats-F25) – Fall 2025 – Maghfira Ramadhani"
+format:
+  pdf:
+    output-file: lab-05.pdf
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk:
+    R.options:
+      width: 200
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(tidyverse)
+library(probstats4econ)
+```
+
+------------------------------------------------------------------------
+
+## Plan {.smaller}
+
+In this lab we will practice:
+
+1.  Visualizing linear relationships\
+2.  Estimating and interpreting **simple linear regression models**\
+3.  Computing slope and intercept **manually and using R**\
+4.  Evaluating **model fit (R²)** and **residuals**\
+5.  Reflecting on **prediction vs. causality**
+
+**Textbook Reference:** JA Chapter 17
+
+------------------------------------------------------------------------
+
+## Warm-up & Review
+
+**Think about:**
+
+\- What does the slope represent in a regression line?\
+- Does correlation imply causation?\
+- Why do we square residuals in OLS?
+
+------------------------------------------------------------------------
+
+## Exercise 1: Visualizing a Linear Relationship {.smaller}
+
+### Simulated data
+
+```{r, echo=TRUE}
+set.seed(123)
+n <- 100
+x <- runif(n, 0, 10)
+y <- 5 + 2*x + rnorm(n, 0, 2)
+simdata <- tibble(x, y)
+```
+
+------------------------------------------------------------------------
+
+## Exercise 1: Visualizing a Linear Relationship {.smaller}
+
+```{r, echo=TRUE}
+ggplot(simdata, aes(x=x, y=y)) +
+  geom_point(color="grey40") +
+  labs(title="Simulated Data: Y = 5 + 2X + ε",
+       x="X", y="Y")
+```
+
+------------------------------------------------------------------------
+
+### Task 1
+
+::: callout-caution
+1.  What sign do you expect for the correlation between `x` and `y`?\
+2.  Add a fitted line using `geom_smooth(method="lm")` and confirm visually.
+:::
+
+------------------------------------------------------------------------
+
+## Exercise 2: Manual OLS Estimation {.smaller}
+
+Compute slope and intercept manually using formulas:
+
+$$
+\hat{\beta} = \frac{\sum_i (x_i - \bar{x})(y_i - \bar{y})}{\sum_i (x_i - \bar{x})^2},
+\qquad
+\hat{\alpha} = \bar{y} - \hat{\beta}\bar{x}.
+$$
+
+```{r, echo=TRUE}
+beta_hat <- cov(simdata$x, simdata$y) / var(simdata$x)
+alpha_hat <- mean(simdata$y) - beta_hat * mean(simdata$x)
+c(alpha_hat, beta_hat)
+```
+
+------------------------------------------------------------------------
+
+## Exercise 2: Manual OLS Estimation {.smaller}
+
+Compare with R’s built-in estimator:
+
+```{r, echo=TRUE}
+model_sim <- lm(y ~ x, data = simdata)
+summary(model_sim)
+```
+
+------------------------------------------------------------------------
+
+### Task 2
+
+-   Interpret the slope: what does a one-unit increase in $X$ imply for $Y$?\
+-   How close are your manual and R estimates? Why are they identical (up to rounding)?
+
+------------------------------------------------------------------------
+
+## Exercise 3: Regression with CPS Data {.smaller}
+
+**Question:** How does education relate to weekly earnings?
+
+```{r, echo=TRUE}
+data(cps)
+model_cps <- lm(earnwk ~ educ, data = cps)
+summary(model_cps)
+```
+
+------------------------------------------------------------------------
+
+### Task 3
+
+1.  Interpret the slope: how much does weekly earnings increase per year of education?\
+2.  Is the intercept meaningful here?\
+3.  Report $R^2$ and explain what it measures.
+
+------------------------------------------------------------------------
+
+## Exercise 4: Visualizing the Fit {.smaller}
+
+```{r, echo=TRUE}
+ggplot(cps, aes(x=educ, y=earnwk)) +
+  geom_point(color="grey70") +
+  geom_smooth(method="lm", se=FALSE, color="blue") +
+  labs(title="Earnings vs Education",
+       subtitle="OLS regression line",
+       x="Years of Education", y="Weekly Earnings (USD)")
+```
+
+------------------------------------------------------------------------
+
+### Task 4
+
+-   Add residual lines with `geom_segment()`.\
+-   Identify one observation with a large positive and one with a large negative residual.\
+-   What could explain them?
+
+------------------------------------------------------------------------
+
+## Exercise 5: Prediction and Causality {.smaller}
+
+Use the fitted model to predict average earnings for 12, 14, and 16 years of education.
+
+```{r, echo=TRUE}
+predict(model_cps, newdata = data.frame(educ = c(12, 14, 16)))
+```
+
+------------------------------------------------------------------------
+
+### Task 5
+
+-   What happens to predicted earnings when education increases by 2 years?\
+-   Can we interpret this as a **causal effect** of education on income? Why or why not?\
+-   What omitted factors might bias the estimate?
+
+------------------------------------------------------------------------
+
+## Challenge Problem {.smaller}
+
+Simulate a new dataset where $Y = 5 + 2X + U$ but $U$ is correlated with $X$ (e.g., `U <- 0.5*X + rnorm(n)`).
+
+Estimate the regression again and compare the slope.
+
+**Question:** Does the estimated slope still recover the true value 2? Why not?
+
+------------------------------------------------------------------------
+
+## Exit Question {.smaller}
+
+> Under what condition can we interpret the slope $\hat{\beta}$ as a **causal effect**?
+
+<!-- **Answer:** Only if the exogeneity condition$E[U|X] = 0$ holds — meaning $X$ is uncorrelated with the unobserved error term $U$. -->
+
+------------------------------------------------------------------------
+
+## Submission {.smaller}
+
+Submit the rendered PDF or HTML report on Canvas as a group.\
+Be sure to include your plots, coefficient outputs, and short written interpretations.
