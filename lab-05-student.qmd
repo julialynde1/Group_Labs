@@ -168,8 +168,13 @@ ggplot(cps, aes(x=educ, y=earnwk)) +
 ### Task 4
 
 -   Add residual lines with `geom_segment()`.\
+
 -   Identify one observation with a large positive and one with a large negative residual.\
+    **x=18 (18 years of education) has both a large positive and negative residual.**
+
 -   What could explain them?
+
+    **There is likely a lot of variation in the data at this point, as 18 years of education indicates education past high school. Different degrees earn different amounts of money, which can account for the variation.**
 
 ------------------------------------------------------------------------
 
