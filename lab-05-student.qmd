@@ -135,6 +135,7 @@ summary(model_cps)
 ### Task 3
 
 1.  Interpret the slope: how much does weekly earnings increase per year of education?\
+    **Weekly earnings increase 101.55 per year of education.**
 
 2.  Is the intercept meaningful here?\
     **No, the intercept is not meaningful as no one can have negative weekly earnings. This is just an estimate based on the linear estimate of the data.**
