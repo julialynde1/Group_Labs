@@ -129,7 +129,7 @@ summary(model_sim)
 
 ## Exercise 3: Regression with CPS Data {.smaller}
 
-**Question:** How does education relate to weekly earnings? 
+**Question:** How does education relate to weekly earnings?
 
 ```{r, echo=TRUE}
 data(cps)
