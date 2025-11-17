@@ -135,10 +135,13 @@ summary(model_cps)
 ### Task 3
 
 1.  Interpret the slope: how much does weekly earnings increase per year of education?\
+
 2.  Is the intercept meaningful here?\
+    **No, the intercept is not meaningful as no one can have negative weekly earnings. This is just an estimate based on the linear estimate of the data.**
+
 3.  Report $R^2$ and explain what it measures.
 
-------------------------------------------------------------------------
+    **Multiple R^2^** **is 0.1057 and adjusted R^2^ is 0.1054. Multiple R^2^** **measures goodness of fit of a regression line and adjusted R^2^** **accounts for any predictors in the R^2^** **calculation. 0.1 is not a good R squared value as this means much of the data lies far from the linear prediction.**
 
 ## Exercise 4: Visualizing the Fit {.smaller}
 
