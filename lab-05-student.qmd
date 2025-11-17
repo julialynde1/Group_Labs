@@ -190,8 +190,14 @@ predict(model_cps, newdata = data.frame(educ = c(12, 14, 16)))
 ### Task 5
 
 -   What happens to predicted earnings when education increases by 2 years?\
+    **Predicted earnings increase by \$203.10 when education increases by 2 years between 12 and 14 years.**
+
 -   Can we interpret this as a **causal effect** of education on income? Why or why not?\
+    **We cannot interpret this as a causal effect because the condition E\[U\|X\]=0 must hold. U could be any external factor that affects income, which can affect a direct causal outcome.**
+
 -   What omitted factors might bias the estimate?
+
+    **Factors like physical and mental health, access to resources, and other can bias the estimate.**
 
 ------------------------------------------------------------------------
 
