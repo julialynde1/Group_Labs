@@ -217,6 +217,24 @@ Estimate the regression again and compare the slope.
 
 **Question:** Does the estimated slope still recover the true value 2? Why not?
 
+The newly generated slope is 2.5, so it does not recover the true value 2. This is because I changed the error term to be U=0.5x. It is now correlated with x. So, I unintentionally added an extra 0.5x into the model, making the slope 2.5 instead of 2. This violates the OLS assumption that the error term must be independent of the regressor.
+
+```{r, echo=TRUE}
+set.seed(123)
+n <- 100
+x <- runif(n, 0, 10)
+U <- 0.5*x + rnorm(n)
+y <- 5 + 2*x + U
+simdata <- tibble(x, y)
+
+#Regression:
+ggplot(simdata, aes(x=x, y=y)) +
+  geom_point(color="grey40") +
+  geom_smooth(method="lm") +
+  labs(title="Simulated Data: Y= 5 + 2X + U",
+       x="X", y="Y")
+```
+
 ------------------------------------------------------------------------
 
 ## Exit Question {.smaller}
