@@ -1,7 +1,7 @@
 ---
 title: "Lab 5: Simple Linear Regression"
 subtitle: "Week 14"
-author: "Group Name"
+author: "Cristina Aybar, Julia Lynde, Sarah Weitz"
 date: "2025-11-17"
 date-format: "MMM DD, YYYY"
 footer: "[ECON2250 Statistics for Economics](https://maghfiraer.github.io/Stats-F25) – Fall 2025 – Maghfira Ramadhani"
