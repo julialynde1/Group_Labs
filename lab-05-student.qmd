@@ -120,8 +120,11 @@ summary(model_sim)
 ### Task 2
 
 -   Interpret the slope: what does a one-unit increase in $X$ imply for $Y$?\
-    A one-unit increase in X implies a 1-point increase in Y.
+    **A one-unit increase in X implies a 1-point increase in Y.**
+
 -   How close are your manual and R estimates? Why are they identical (up to rounding)?
+
+    **My manual and R estimates are identical because** **we are computing exactly the same quantities that R is computing. Linear regression has closed-form solutions, meaning the results are very close. We are using the same quantities and same formulas.**
 
 ------------------------------------------------------------------------
 
