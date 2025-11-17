@@ -155,9 +155,15 @@ summary(model_cps)
 ## Exercise 4: Visualizing the Fit {.smaller}
 
 ```{r, echo=TRUE}
-model
+model <- lm(earnwk ~ educ, data=cps)
+summary(model)
+cps <-cps|>
+filter(!is.na(earnwk)) |>
+mutate(fitted=fitted(model))
+    resid=resid(model)
 ggplot(cps, aes(x=educ, y=earnwk)) +
   geom_point(color="grey70") +
+  geom_segment(aes(xend=educ,yend=fitted), color="red",alpha=0.5) +
   geom_smooth(method="lm", se=FALSE, color="blue") +
 
   labs(title="Earnings vs Education",
